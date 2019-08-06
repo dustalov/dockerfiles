@@ -1,5 +1,5 @@
 all:
-	docker build --rm -t dustalov/github-pages-alpine .
+	docker build --rm -t dustalov/jekyll-alpine .
 
 push:
-	docker push dustalov/github-pages-alpine
+	docker push dustalov/jekyll-alpine
