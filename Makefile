@@ -4,8 +4,11 @@ else
 TARGET := latest-$(shell uname -m)
 endif
 
-all:
+build:
 	docker build --rm -t dustalov/jekyll-alpine:$(TARGET) .
+
+build-nocache:
+	docker build --rm -t dustalov/jekyll-alpine:$(TARGET) --no-cache .
 
 push:
 	docker push dustalov/jekyll-alpine:$(TARGET)
