@@ -4,4 +4,4 @@ TAG := $(shell uname -sm | awk -F' ' '{ print tolower($$1) "-" $$2 }')
 	docker build --rm -t dustalov/$@:$(TAG) -f $< .
 
 %-nocache: Dockerfile.%
-	docker build --rm --no-cache --pull -t dustalov/$(subst %-nocache,%,$@):$(TAG) -f $< .
+	docker build --rm --no-cache --pull -t dustalov/$(patsubst %-nocache,%,$@):$(TAG) -f $< .
