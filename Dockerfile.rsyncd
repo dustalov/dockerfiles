@@ -1,0 +1,11 @@
+FROM alpine
+
+MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+
+EXPOSE 873
+
+COPY rsyncd.sh /usr/bin/
+
+RUN /sbin/apk add rsync --no-cache
+
+CMD /usr/bin/rsyncd.sh
