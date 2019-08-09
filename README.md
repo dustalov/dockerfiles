@@ -1,2 +1,3 @@
-# jekyll-alpine-docker
-A minimal container that runs the github-pages gem on Alpine Linux.
+# Dockerfiles
+
+This repository contains several Dockerfiles for personal use. They are licensed under The Unlicense.
