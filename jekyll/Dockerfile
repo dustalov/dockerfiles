@@ -2,6 +2,8 @@ FROM ruby:alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
+ENV JEKYLL_ENV production
+
 RUN \
 gem install bundler && \
 apk add --no-cache libffi libxml2 libxslt && \

@@ -8,7 +8,7 @@ build:
 	docker build --rm -t dustalov/jekyll-alpine:$(TARGET) .
 
 build-nocache:
-	docker build --rm -t dustalov/jekyll-alpine:$(TARGET) --no-cache .
+	docker build --rm -t dustalov/jekyll-alpine:$(TARGET) --no-cache --pull .
 
 push:
 	docker push dustalov/jekyll-alpine:$(TARGET)
