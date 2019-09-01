@@ -11,7 +11,7 @@ wget -O- -q 'https://github.com/adobe-fonts/source-sans-pro/archive/release.zip'
 wget -O- -q 'https://github.com/adobe-fonts/source-serif-pro/archive/release.zip' | unzip -jq - '*.otf' && \
 wget -O- -q 'https://github.com/adobe-fonts/source-code-pro/archive/release.zip' | unzip -jq - '*.otf' && \
 apk add --no-cache texlive-full biber make && \
-ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts && \
+ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texmf && \
 fc-cache -fv && \
 ln -sf /usr/bin/luatex /usr/bin/lualatex && \
 cd /tmp/texlive-test && \
