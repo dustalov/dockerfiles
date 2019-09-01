@@ -5,11 +5,7 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 COPY ["stub.tex", "/tmp/texlive-test/stub.tex"]
 
 RUN \
-mkdir -p /usr/share/fonts/adobe && \
-cd /usr/share/fonts/adobe && \
-wget -O- -q 'https://github.com/adobe-fonts/source-sans-pro/archive/release.zip' | unzip -jq - '*.otf' && \
-wget -O- -q 'https://github.com/adobe-fonts/source-serif-pro/archive/release.zip' | unzip -jq - '*.otf' && \
-wget -O- -q 'https://github.com/adobe-fonts/source-code-pro/archive/release.zip' | unzip -jq - '*.otf' && \
+mkdir -p /usr/share/fonts && \
 apk add --no-cache texlive-full biber make && \
 ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texmf && \
 fc-cache -fv && \
