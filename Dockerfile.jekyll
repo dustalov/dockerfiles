@@ -4,16 +4,13 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 ENV JEKYLL_ENV production
 
-COPY Gemfile.jekyll Gemfile
+COPY Gemfile.jekyll /tmp/jekyll/Gemfile
 
 RUN \
 gem install bundler && \
 bundle config build.nokogiri --use-system-libraries && \
 apk add --no-cache libffi libxml2 libxslt && \
 apk add --no-cache --virtual .gem-installdeps build-base libffi-dev libxml2-dev libxslt-dev && \
-TEMP=$(mktemp -d) && \
-mv Gemfile $TEMP && \
-cd $TEMP && \
-bundle install --system --jobs $(nproc) && \
-rm -rf $GEM_HOME/cache $TEMP && \
+bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) --system && \
+rm -rf $GEM_HOME/cache /tmp/jekyll && \
 apk del .gem-installdeps
