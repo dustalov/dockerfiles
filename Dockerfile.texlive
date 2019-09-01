@@ -2,20 +2,19 @@ FROM alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
-COPY ["PT Public Pack_OtTt.zip", "stub.tex", "/"]
+COPY ["stub.tex", "/tmp/texlive-test/stub.tex"]
 
 RUN \
-mkdir -p /usr/share/fonts && \
-cd /usr/share/fonts && \
-unzip '/PT Public Pack_OtTt.zip' && \
-rm -v '/PT Public Pack_OtTt.zip' && \
+mkdir -p /usr/share/fonts/adobe && \
+cd /usr/share/fonts/adobe && \
+wget -O- -q 'https://github.com/adobe-fonts/source-sans-pro/archive/release.zip' | unzip -jq - '*.otf' && \
+wget -O- -q 'https://github.com/adobe-fonts/source-serif-pro/archive/release.zip' | unzip -jq - '*.otf' && \
+wget -O- -q 'https://github.com/adobe-fonts/source-code-pro/archive/release.zip' | unzip -jq - '*.otf' && \
 apk add --no-cache texlive-full biber make && \
 ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts && \
 fc-cache -fv && \
 ln -sf /usr/bin/luatex /usr/bin/lualatex && \
-TEMP=$(mktemp -d) && \
-mv -f /stub.tex $TEMP && \
-cd $TEMP && \
+cd /tmp/texlive-test && \
 latexmk -silent stub && \
 latexmk -lualatex -silent stub && \
-rm -rf $TEMP
+rm -rf /tmp/texlive-test
