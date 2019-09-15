@@ -1,4 +1,11 @@
 \documentclass{article}
+\usepackage{iftex}
+\ifLuaTeX
+\usepackage{fontspec}
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
+\fi
 \title{Lorem ipsum}
 \author{John Doe}
 \begin{document}
