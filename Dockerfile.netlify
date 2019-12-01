@@ -1,0 +1,7 @@
+FROM node:alpine
+
+MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+
+RUN npm install -g netlify-cli && npm cache clean
+
+CMD netlify deploy --prod -d _site
