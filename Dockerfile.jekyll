@@ -9,6 +9,7 @@ COPY Gemfile.jekyll /tmp/jekyll/Gemfile
 RUN \
 gem install bundler && \
 bundle config build.nokogiri --use-system-libraries && \
+bundle config build.sassc --disable-march-tune-native && \
 apk add --no-cache libffi libxml2 libxslt && \
 apk add --no-cache --virtual .gem-installdeps build-base libffi-dev libxml2-dev libxslt-dev && \
 bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) --system && \
