@@ -4,13 +4,15 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 ENV JEKYLL_ENV production
 
+ENV GEM_PATH $GEM_HOME:$GEM_HOME/ruby/$RUBY_MAJOR.0
+ENV PATH $GEM_HOME/bin:$GEM_HOME/ruby/$RUBY_MAJOR.0/bin:$PATH
+
 COPY Gemfile.gh-pages /tmp/jekyll/Gemfile
 
 RUN \
-gem install bundler && \
 bundle config build.nokogiri --use-system-libraries && \
 apk add --no-cache libffi libxml2 libxslt && \
 apk add --no-cache --virtual .gem-installdeps build-base libffi-dev libxml2-dev libxslt-dev && \
-bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) --system && \
+bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) && \
 rm -rf $GEM_HOME/cache /tmp/jekyll && \
 apk del .gem-installdeps
