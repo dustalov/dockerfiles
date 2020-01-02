@@ -11,6 +11,10 @@ wget http://mirrors.ctan.org/install/fonts/linguisticspro.tds.zip && \
 mkdir /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
 unzip -j linguisticspro.tds.zip '*.otf' -d /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
 rm -f linguisticspro.tds.zip && \
+wget http://mirrors.ctan.org/install/macros/latex/contrib/polyglossia.tds.zip && \
+unzip polyglossia.tds.zip -d /usr/share/texmf-dist -o && \
+rm -f polyglossia.tds.zip && \
+texhash && \
 ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texmf && \
 fc-cache -fv && \
 luaotfload-tool -ufv && \
