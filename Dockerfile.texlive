@@ -16,6 +16,6 @@ fc-cache -fv && \
 luaotfload-tool -ufv && \
 ln -sf /usr/bin/luatex /usr/bin/lualatex && \
 cd /tmp/texlive-test && \
-latexmk -silent stub && \
+latexmk -pdf -silent stub && \
 latexmk -lualatex -silent stub && \
 rm -rf /tmp/texlive-test
