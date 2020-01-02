@@ -14,7 +14,6 @@ rm -f linguisticspro.tds.zip && \
 ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texmf && \
 fc-cache -fv && \
 luaotfload-tool -ufv && \
-ln -sf /usr/bin/luatex /usr/bin/lualatex && \
 cd /tmp/texlive-test && \
 latexmk -pdf -silent stub && \
 latexmk -lualatex -silent stub && \
