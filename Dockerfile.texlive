@@ -6,7 +6,7 @@ COPY ["stub.tex", "/tmp/texlive-test/stub.tex"]
 
 RUN \
 mkdir -p /usr/share/fonts && \
-apk add --no-cache texlive-full biber make && \
+apk add --no-cache texlive-full biblatex biber make && \
 wget http://mirrors.ctan.org/install/fonts/linguisticspro.tds.zip && \
 mkdir /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
 unzip -j linguisticspro.tds.zip '*.otf' -d /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
