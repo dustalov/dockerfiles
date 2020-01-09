@@ -4,9 +4,6 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 ENV JEKYLL_ENV production
 
-ENV GEM_PATH $GEM_HOME:$GEM_HOME/ruby/$RUBY_MAJOR.0
-ENV PATH $GEM_HOME/bin:$GEM_HOME/ruby/$RUBY_MAJOR.0/bin:$PATH
-
 COPY Gemfile.jekyll /tmp/jekyll/Gemfile
 
 RUN \
