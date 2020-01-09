@@ -1,0 +1,2 @@
+Dockerfile.* linguist-language=Dockerfile
+Gemfile.* linguist-language=Ruby
