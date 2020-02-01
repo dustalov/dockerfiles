@@ -1,24 +1,13 @@
-FROM alpine
+FROM fedora
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 COPY ["stub.tex", "/tmp/texlive-test/stub.tex"]
 
 RUN \
-mkdir -p /usr/share/fonts && \
-apk add --no-cache texlive-full biblatex biber make && \
-wget http://mirrors.ctan.org/install/fonts/linguisticspro.tds.zip && \
-mkdir /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
-unzip -j linguisticspro.tds.zip '*.otf' -d /usr/share/texmf-dist/fonts/opentype/public/linguisticspro && \
-rm -f linguisticspro.tds.zip && \
-wget http://mirrors.ctan.org/install/macros/latex/contrib/polyglossia.tds.zip && \
-unzip polyglossia.tds.zip -d /usr/share/texmf-dist -o && \
-rm -f polyglossia.tds.zip && \
-texhash && \
-ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texmf && \
-fc-cache -fv && \
-luaotfload-tool -ufv && \
+dnf --setopt=install_weak_deps=False -y install make latexmk biber texlive-scheme-full glibc-langpack-en && \
 cd /tmp/texlive-test && \
 latexmk -pdf -silent stub && \
 latexmk -lualatex -silent stub && \
-rm -rf /tmp/texlive-test
+rm -rf /tmp/texlive-test && \
+dnf clean all
