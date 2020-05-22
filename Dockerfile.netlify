@@ -2,6 +2,6 @@ FROM node:alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
-RUN npm install -g netlify-cli && npm cache clean -f
+RUN npm install -g netlify-cli && npm cache clean -f && netlify --telemetry-disable
 
 CMD netlify deploy --prod -d _site
