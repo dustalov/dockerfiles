@@ -2,6 +2,10 @@ FROM node:alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
-RUN npm install -g netlify-cli && npm cache clean -f && netlify --telemetry-disable
+RUN \
+npm install -g netlify-cli && \
+npm cache clean -f && \
+netlify --telemetry-disable && \
+sed -i -r 's/\b[0-f]{8}(-[0-f]{4}){3}-[0-f]{12}\b/00000000-0000-0000-0000-000000000000/' "$HOME/.netlify/config.json"
 
 CMD netlify deploy --prod -d _site
