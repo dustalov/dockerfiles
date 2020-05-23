@@ -14,3 +14,5 @@ echo "gem 'github-pages', group: :jekyll_plugins" >> /tmp/jekyll/Gemfile && \
 bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) && \
 rm -rf $GEM_HOME/cache /tmp/jekyll && \
 apk del .gem-installdeps
+
+CMD jekyll build -s jekyll -d _site
