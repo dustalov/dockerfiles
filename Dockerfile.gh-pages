@@ -4,12 +4,13 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 ENV JEKYLL_ENV production
 
-COPY Gemfile.gh-pages /tmp/jekyll/Gemfile
-
 RUN \
 bundle config build.nokogiri --use-system-libraries && \
 apk add --no-cache libffi libxml2 libxslt && \
 apk add --no-cache --virtual .gem-installdeps build-base libffi-dev libxml2-dev libxslt-dev && \
+mkdir -p /tmp/jekyll && \
+echo "source 'https://rubygems.org'" > /tmp/jekyll/Gemfile && \
+echo "gem 'github-pages', group: :jekyll_plugins" >> /tmp/jekyll/Gemfile && \
 bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) && \
 rm -rf $GEM_HOME/cache /tmp/jekyll && \
 apk del .gem-installdeps
