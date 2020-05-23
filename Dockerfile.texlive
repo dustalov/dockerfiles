@@ -5,30 +5,30 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 RUN \
 dnf --setopt=install_weak_deps=False -y install make latexmk biber texlive-scheme-full glibc-langpack-en && \
 mkdir -p /tmp/texlive && \
-echo '\documentclass{article}' > /tmp/texlive/stub.tex && \
-echo '\usepackage{iftex}' >> /tmp/texlive/stub.tex && \
-echo '\ifLuaTeX' >> /tmp/texlive/stub.tex && \
-echo '\usepackage{fontspec}' >> /tmp/texlive/stub.tex && \
-echo '\setmainfont{FreeSerif}' >> /tmp/texlive/stub.tex && \
-echo '\setsansfont{FreeSans}' >> /tmp/texlive/stub.tex && \
-echo '\setmonofont{FreeMono}' >> /tmp/texlive/stub.tex && \
-echo '\fi' >> /tmp/texlive/stub.tex && \
-echo '\begin{filecontents*}{stub.bib}' >> /tmp/texlive/stub.tex && \
-echo '@misc{record,' >> /tmp/texlive/stub.tex && \
-echo '  author = {Doe, John},' >> /tmp/texlive/stub.tex && \
-echo '  title  = {Lorem ipsum},' >> /tmp/texlive/stub.tex && \
-echo '  year   = {2020},' >> /tmp/texlive/stub.tex && \
-echo '}' >> /tmp/texlive/stub.tex && \
-echo '\end{filecontents*}' >> /tmp/texlive/stub.tex && \
-echo '\usepackage[backend=biber,style=numeric]{biblatex}' >> /tmp/texlive/stub.tex && \
-echo '\addbibresource{stub.bib}' >> /tmp/texlive/stub.tex && \
-echo '\title{Lorem ipsum}' >> /tmp/texlive/stub.tex && \
-echo '\author{John Doe}' >> /tmp/texlive/stub.tex && \
-echo '\begin{document}' >> /tmp/texlive/stub.tex && \
-echo '\maketitle' >> /tmp/texlive/stub.tex && \
-echo '\nocite{*}' >> /tmp/texlive/stub.tex && \
-echo '\printbibliography' >> /tmp/texlive/stub.tex && \
-echo '\end{document}' >> /tmp/texlive/stub.tex && \
+echo "\documentclass{article}" > /tmp/texlive/stub.tex && \
+echo "\usepackage{iftex}" >> /tmp/texlive/stub.tex && \
+echo "\ifLuaTeX" >> /tmp/texlive/stub.tex && \
+echo "\usepackage{fontspec}" >> /tmp/texlive/stub.tex && \
+echo "\setmainfont{FreeSerif}" >> /tmp/texlive/stub.tex && \
+echo "\setsansfont{FreeSans}" >> /tmp/texlive/stub.tex && \
+echo "\setmonofont{FreeMono}" >> /tmp/texlive/stub.tex && \
+echo "\fi" >> /tmp/texlive/stub.tex && \
+echo "\begin{filecontents*}{stub.bib}" >> /tmp/texlive/stub.tex && \
+echo "@misc{record," >> /tmp/texlive/stub.tex && \
+echo "  author = {Doe, John}," >> /tmp/texlive/stub.tex && \
+echo "  title  = {Lorem ipsum}," >> /tmp/texlive/stub.tex && \
+echo "  year   = {2020}," >> /tmp/texlive/stub.tex && \
+echo "}" >> /tmp/texlive/stub.tex && \
+echo "\end{filecontents*}" >> /tmp/texlive/stub.tex && \
+echo "\usepackage[backend=biber,style=numeric]{biblatex}" >> /tmp/texlive/stub.tex && \
+echo "\addbibresource{stub.bib}" >> /tmp/texlive/stub.tex && \
+echo "\title{Lorem ipsum}" >> /tmp/texlive/stub.tex && \
+echo "\author{John Doe}" >> /tmp/texlive/stub.tex && \
+echo "\begin{document}" >> /tmp/texlive/stub.tex && \
+echo "\maketitle" >> /tmp/texlive/stub.tex && \
+echo "\nocite{*}" >> /tmp/texlive/stub.tex && \
+echo "\printbibliography" >> /tmp/texlive/stub.tex && \
+echo "\end{document}" >> /tmp/texlive/stub.tex && \
 cd /tmp/texlive && \
 latexmk -pdf -silent stub && \
 latexmk -lualatex -silent stub && \
