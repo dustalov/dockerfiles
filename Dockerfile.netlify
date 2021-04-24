@@ -5,6 +5,7 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 RUN \
 npm install -g netlify-cli && \
 npm cache clean -f && \
-echo '{"telemetryDisabled": true, "cliId": "00000000-0000-0000-0000-000000000000"}' > "$HOME/.netlify/config.json"
+mkdir -p "$HOME/.config/netlify" && \
+echo '{"telemetryDisabled": true, "cliId": "00000000-0000-0000-0000-000000000000"}' > "$HOME/.config/netlify/config.json"
 
 CMD netlify deploy --prod -d _site
