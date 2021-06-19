@@ -31,13 +31,6 @@ jobs:
         push: true
         tags: |
           dustalov/netlify:latest
-    - name: Update repo description
-      if: github.event_name != 'pull_request'
-      uses: peter-evans/dockerhub-description@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: dustalov/netlify
   jekyll:
     runs-on: ubuntu-latest
     steps:
@@ -62,10 +55,3 @@ jobs:
         push: true
         tags: |
           dustalov/jekyll:latest
-    - name: Update repo description
-      if: github.event_name != 'pull_request'
-      uses: peter-evans/dockerhub-description@v2
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: dustalov/jekyll
