@@ -36,7 +36,7 @@ jobs:
       uses: peter-evans/dockerhub-description@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         repository: dustalov/netlify
   jekyll:
     runs-on: ubuntu-latest
@@ -67,5 +67,5 @@ jobs:
       uses: peter-evans/dockerhub-description@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
         repository: dustalov/jekyll
