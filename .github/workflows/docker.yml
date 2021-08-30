@@ -32,7 +32,7 @@ jobs:
         context: .
         file: Dockerfile.netlify
         platforms: linux/amd64,linux/arm64
-        push: true
+        push: ${{ github.event_name != 'pull_request' }}
         tags: |
           dustalov/netlify:latest
   jekyll:
@@ -56,6 +56,6 @@ jobs:
         context: .
         file: Dockerfile.jekyll
         platforms: linux/amd64,linux/arm64
-        push: true
+        push: ${{ github.event_name != 'pull_request' }}
         tags: |
           dustalov/jekyll:latest
