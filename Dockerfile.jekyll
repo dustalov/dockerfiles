@@ -1,24 +1,12 @@
-FROM ruby:alpine
+FROM alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 ENV JEKYLL_ENV production
 
 RUN \
-bundle config build.nokogiri --use-system-libraries && \
-bundle config build.sassc --disable-march-tune-native && \
-apk add --no-cache libffi libxml2 libxslt && \
-apk add --no-cache --virtual .gem-installdeps build-base libffi-dev libxml2-dev libxslt-dev && \
-mkdir -p /tmp/jekyll && \
-echo "source 'https://rubygems.org'" > /tmp/jekyll/Gemfile && \
-echo "gem 'jekyll'" >> /tmp/jekyll/Gemfile && \
-echo "group :jekyll_plugins do" >> /tmp/jekyll/Gemfile && \
-echo "  gem 'jekyll-feed'" >> /tmp/jekyll/Gemfile && \
-echo "  gem 'jekyll-seo-tag'" >> /tmp/jekyll/Gemfile && \
-echo "  gem 'jekyll-sitemap'" >> /tmp/jekyll/Gemfile && \
-echo "end" >> /tmp/jekyll/Gemfile && \
-bundle install --gemfile=/tmp/jekyll/Gemfile --jobs=$(nproc) && \
-rm -rf $GEM_HOME/cache /tmp/jekyll && \
-apk del .gem-installdeps
+apk add jekyll && \
+gem install -N --conservative --minimal-deps jekyll-feed jekyll-seo-tag jekyll-sitemap && \
+gem sources -c
 
 CMD jekyll build -s jekyll -d _site
