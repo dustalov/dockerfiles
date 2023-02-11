@@ -3,7 +3,7 @@ FROM node:alpine
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-npm install -g --no-fund --no-update-notifier netlify-cli && \
+npm install -g --no-fund netlify-cli && \
 npm cache clean -f && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)" && \
 mkdir -p "$HOME/.config/netlify" && \
