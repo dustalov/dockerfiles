@@ -13,7 +13,7 @@ jobs:
   docker:
     strategy:
       matrix:
-        image: [netlify, jekyll]
+        image: [netlify, jekyll, purgecss]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
