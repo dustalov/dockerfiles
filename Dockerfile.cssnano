@@ -3,8 +3,8 @@ FROM node:alpine
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-npm install -g --no-fund cssnano postcss-cli && \
-npm cache clean -f && \
+npm install -g --no-update-notifier --no-fund cssnano postcss-cli && \
+npm cache clean --no-update-notifier -f && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
 
 CMD postcss -u cssnano
