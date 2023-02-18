@@ -11,7 +11,7 @@ This repository contains several Dockerfiles for personal use. They are licensed
 | --- | --- | --- |
 | [`jekyll`](Dockerfile.jekyll) | [![Docker Hub: Jekyll][docker_hub_jekyll_badge]][docker_hub_jekyll_link] | [![GitHub Packages: Jekyll][ghcr_jekyll_badge]][ghcr_jekyll_link] |
 | [`netlify`](Dockerfile.netlify) | [![Docker Hub: Netlify][docker_hub_netlify_badge]][docker_hub_netlify_link] | [![GitHub Packages: Netlify][ghcr_netlify_badge]][ghcr_netlify_link] |
-| [`PurgeCSS`](Dockerfile.purgecss) | [![Docker Hub: PurgeCSS][docker_hub_purgecss_badge]][docker_hub_purgecss_link] | [![GitHub Packages: PurgeCSS][ghcr_purgecss_badge]][ghcr_purgecss_link] |
+| [`purgecss`](Dockerfile.purgecss) | [![Docker Hub: PurgeCSS][docker_hub_purgecss_badge]][docker_hub_purgecss_link] | [![GitHub Packages: PurgeCSS][ghcr_purgecss_badge]][ghcr_purgecss_link] |
 | [`cssnano`](Dockerfile.cssnano) | [![Docker Hub: cssnano][docker_hub_cssnano_badge]][docker_hub_cssnano_link] | [![GitHub Packages: cssnano][ghcr_cssnano_badge]][ghcr_cssnano_link] |
 
 [docker_hub_jekyll_badge]: https://img.shields.io/docker/pulls/dustalov/jekyll
