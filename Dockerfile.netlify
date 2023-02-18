@@ -3,8 +3,8 @@ FROM node:alpine
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-npm install -g --no-update-notifier --no-fund netlify-cli && \
-npm cache clean --no-update-notifier -f && \
+npm install --global --silent --no-update-notifier --no-fund netlify-cli && \
+npm cache clean --silent --no-update-notifier --force && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)" && \
 mkdir -p "$HOME/.config/netlify" && \
 echo '{"telemetryDisabled": true, "cliId": "00000000-0000-0000-0000-000000000000"}' > "$HOME/.config/netlify/config.json"
