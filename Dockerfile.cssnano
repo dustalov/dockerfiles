@@ -1,0 +1,10 @@
+FROM node:alpine
+
+MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+
+RUN \
+npm install -g --no-fund cssnano postcss-cli && \
+npm cache clean -f && \
+chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
+
+CMD postcss -u cssnano
