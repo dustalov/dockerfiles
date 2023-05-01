@@ -1,9 +1,9 @@
-FROM node:alpine
+FROM node:lts-alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-npm install --global --silent --no-update-notifier --no-fund purgecss && \
+npm install --global --quiet --no-update-notifier --no-fund purgecss && \
 npm cache clean --silent --no-update-notifier --force && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
 
