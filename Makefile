@@ -6,4 +6,4 @@ TAG := $(shell uname -sm | awk -F' ' '{ print tolower($$1) "-" $$2 }')
 	$(DOCKER) build --rm --pull -t 'dustalov/$*:$(TAG)' -f '$<' .
 
 %-nocache: Dockerfile.%
-	$(DOCKER) build --rm --pull --no-cache --pull -t 'dustalov/$*:$(TAG)' -f '$<' .
+	$(DOCKER) build --rm --no-cache --pull -t 'dustalov/$*:$(TAG)' -f '$<' .
