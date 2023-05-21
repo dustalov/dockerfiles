@@ -2,6 +2,8 @@ FROM node:lts-alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
+ENV NO_UPDATE_NOTIFIER=1
+
 RUN \
 npm install --global --quiet --no-update-notifier --no-fund cssnano postcss-cli && \
 npm cache clean --silent --no-update-notifier --force && \
