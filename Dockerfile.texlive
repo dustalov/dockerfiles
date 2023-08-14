@@ -4,9 +4,16 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
 apk add --no-cache biber git make texlive-full && \
-ln -sf /usr/share/texmf-dist/fonts /usr/share/fonts/texlive && \
+echo '<?xml version="1.0"?>' >/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '<fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '<dir>/usr/share/texmf-dist/fonts/opentype</dir>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '<dir>/usr/share/texmf-dist/fonts/truetype</dir>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '<dir>/usr/share/texmf-dist/fonts/type1</dir>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+echo '</fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
+ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf /etc/fonts/conf.d/ && \
 texhash && \
-fc-cache -fv && \
+fc-cache -sfv && \
 luaotfload-tool -ufv
 
 CMD latexmk
