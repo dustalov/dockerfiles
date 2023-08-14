@@ -2,9 +2,9 @@ name: Docker
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
   schedule:
   - cron: '30 1 1 * *'
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
   docker:
     strategy:
       matrix:
-        image: [netlify, jekyll, purgecss, cssnano]
+        image: [ cssnano, jekyll, netlify, purgecss, texlive ]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
