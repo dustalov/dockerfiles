@@ -9,4 +9,4 @@ apk add --no-cache jekyll && \
 gem install -N --conservative --minimal-deps jekyll-feed jekyll-seo-tag jekyll-sitemap && \
 gem sources -c
 
-CMD jekyll build -s jekyll -d _site
+CMD jekyll build
