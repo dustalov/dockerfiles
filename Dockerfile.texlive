@@ -14,6 +14,7 @@ echo '</fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf /etc/fonts/conf.d/ && \
 texhash && \
 fc-cache -sfv && \
-luaotfload-tool -ufv
+luaotfload-tool -ufv && \
+git config --global --add safe.directory '*' # actions/runner#2033
 
 CMD latexmk
