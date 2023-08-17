@@ -3,7 +3,7 @@ FROM alpine
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-apk add --no-cache biber curl git make pandoc-cli texlive-full && \
+apk add --no-cache biber curl make pandoc-cli texlive-full && \
 echo '<?xml version="1.0"?>' >/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 echo '<fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
@@ -14,7 +14,6 @@ echo '</fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf /etc/fonts/conf.d/ && \
 texhash && \
 fc-cache -sfv && \
-luaotfload-tool -ufv && \
-git config --global --add safe.directory '*' # actions/runner#2033
+luaotfload-tool -ufv
 
 CMD latexmk
