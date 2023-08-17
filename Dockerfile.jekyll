@@ -2,7 +2,7 @@ FROM alpine
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
-ENV BUNDLE_DISABLE_VERSION_CHECK=1 BUNDLE_VERSION=system JEKYLL_ENV=production RUBYOPT="--disable-did_you_mean"
+ENV BUNDLE_DISABLE_VERSION_CHECK=1 BUNDLE_VERSION=system JEKYLL_ENV=production JEKYLL_NO_BUNDLER_REQUIRE=1 RUBYOPT="--disable-did_you_mean"
 
 RUN \
 apk add --no-cache jekyll && \
