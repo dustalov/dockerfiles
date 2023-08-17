@@ -3,7 +3,7 @@ FROM alpine
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
 RUN \
-apk add --no-cache biber git make texlive-full && \
+apk add --no-cache biber curl git make pandoc-cli texlive-full && \
 echo '<?xml version="1.0"?>' >/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
 echo '<fontconfig>' >>/usr/share/fontconfig/conf.avail/09-texlive.conf && \
