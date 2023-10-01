@@ -6,7 +6,9 @@ ENV BUNDLE_DISABLE_VERSION_CHECK=1 BUNDLE_VERSION=system JEKYLL_ENV=production J
 
 RUN \
 apk add --no-cache jekyll && \
+apk add --no-cache --virtual .gem-installdeps ruby-dev && \
 gem install -N --conservative --minimal-deps jekyll-feed jekyll-seo-tag jekyll-sitemap && \
-gem sources -c
+gem sources -c && \
+apk del .gem-installdeps
 
 CMD jekyll build
