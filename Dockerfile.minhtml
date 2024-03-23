@@ -1,0 +1,14 @@
+FROM alpine AS build
+
+RUN \
+apk add curl jq && \
+curl https://api.github.com/repos/wilsonzlin/minify-html/releases/latest | jq -r "first(.assets[] | select(.name | contains(\"$(uname -m)-unknown-linux-gnu\"))).browser_download_url" | xargs curl -Lo /minhtml && \
+chmod +x /minhtml
+
+FROM ubuntu
+
+MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+
+COPY --from=build /minhtml /usr/bin/
+
+CMD minhtml
