@@ -5,7 +5,7 @@ MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 ENV NO_UPDATE_NOTIFIER=1
 
 RUN \
-npm install --global --quiet --no-update-notifier --no-fund lightningcss && \
+npm install --global --quiet --no-update-notifier --no-fund lightningcss-cli && \
 npm cache clean --silent --no-update-notifier --force && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
 
