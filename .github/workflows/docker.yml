@@ -13,7 +13,7 @@ jobs:
   docker:
     strategy:
       matrix:
-        image: [ cssnano, jekyll, netlify, purgecss, texlive ]
+        image: [ cssnano, jekyll, lightningcss, minhtml, netlify, purgecss, texlive ]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
