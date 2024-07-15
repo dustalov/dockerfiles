@@ -15,6 +15,9 @@ jobs:
       matrix:
         image: [ cssnano, jekyll, lightningcss, minhtml, netlify, purgecss, texlive ]
     runs-on: ubuntu-latest
+    environment:
+      name: dustalov/${{ matrix.image }}
+      url: https://hub.docker.com/r/dustalov/${{ matrix.image }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
