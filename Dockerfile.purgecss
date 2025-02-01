@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
 ENV NO_UPDATE_NOTIFIER=1
 
@@ -9,4 +9,4 @@ npm install --global --quiet --no-update-notifier --no-fund purgecss && \
 npm cache clean --silent --no-update-notifier --force && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
 
-CMD purgecss
+CMD ["purgecss"]

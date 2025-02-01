@@ -1,6 +1,6 @@
 FROM alpine
 
-MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
 RUN \
 apk add --no-cache biber curl font-croscore make pandoc-cli texlive-full && \
@@ -16,4 +16,4 @@ texhash && \
 fc-cache -sfv && \
 luaotfload-tool -ufv
 
-CMD latexmk
+CMD ["latexmk"]

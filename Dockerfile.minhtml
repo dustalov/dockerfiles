@@ -7,8 +7,8 @@ chmod +x /minhtml
 
 FROM ubuntu
 
-MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
+LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
 COPY --from=build /minhtml /usr/bin/
 
-CMD minhtml
+CMD ["minhtml"]
