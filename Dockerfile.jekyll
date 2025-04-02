@@ -7,6 +7,7 @@ ENV BUNDLE_DISABLE_VERSION_CHECK=1 BUNDLE_VERSION=system JEKYLL_ENV=production J
 RUN \
 apk add --no-cache libffi ruby ruby-bundler && \
 apk add --no-cache --virtual .gem-installdeps build-base ruby-dev libffi-dev && \
+gem install -N --conservative --minimal-deps --platform=ruby google-protobuf && \
 gem install -N --conservative --minimal-deps jekyll jekyll-feed jekyll-seo-tag jekyll-sitemap && \
 gem sources -c && \
 apk del .gem-installdeps
