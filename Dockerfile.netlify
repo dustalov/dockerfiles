@@ -11,4 +11,4 @@ chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)" && \
 mkdir -p "$HOME/.config/netlify" && \
 echo '{"telemetryDisabled": true, "cliId": "00000000-0000-0000-0000-000000000000"}' > "$HOME/.config/netlify/config.json"
 
-CMD ["netlify", "deploy", "--no-build", "--prod", "-dir", "_site"]
+CMD ["netlify", "deploy", "--no-build", "--prod", "--dir", "_site"]
