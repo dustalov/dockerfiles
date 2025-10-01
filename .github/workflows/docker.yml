@@ -52,7 +52,7 @@ jobs:
           ghcr.io/dustalov/${{ matrix.image }}:latest
     - name: Update Docker Hub description
       if: github.event_name != 'pull_request'
-      uses: peter-evans/dockerhub-description@v4
+      uses: peter-evans/dockerhub-description@v5
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
