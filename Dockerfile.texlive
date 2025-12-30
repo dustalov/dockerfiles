@@ -2,18 +2,19 @@ FROM alpine
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
-RUN set -eux; \
-apk add --no-cache biber curl font-croscore make pandoc-cli texlive-full && \
-cat >/usr/share/fontconfig/conf.avail/09-texlive.conf <<'EOF'
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-<dir>/usr/share/texmf-dist/fonts/opentype</dir>
-<dir>/usr/share/texmf-dist/fonts/truetype</dir>
-<dir>/usr/share/texmf-dist/fonts/type1</dir>
-</fontconfig>
-EOF
-ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf /etc/fonts/conf.d/09-texlive.conf && \
+RUN \
+apk add --no-cache biber curl font-croscore fontconfig make pandoc-cli texlive-full && \
+{ \
+echo '<?xml version="1.0"?>' && \
+echo '<!DOCTYPE fontconfig SYSTEM "fonts.dtd">' && \
+echo '<fontconfig>' && \
+echo '  <dir>/usr/share/texmf-dist/fonts/opentype</dir>' && \
+echo '  <dir>/usr/share/texmf-dist/fonts/truetype</dir>' && \
+echo '  <dir>/usr/share/texmf-dist/fonts/type1</dir>' && \
+echo '</fontconfig>' && \
+} > /usr/share/fontconfig/conf.avail/09-texlive.conf && \
+ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf \
+/etc/fonts/conf.d/09-texlive.conf && \
 texhash && \
 fc-cache -sfv && \
 luaotfload-tool -ufv
