@@ -13,8 +13,7 @@ echo '  <dir>/usr/share/texmf-dist/fonts/truetype</dir>' && \
 echo '  <dir>/usr/share/texmf-dist/fonts/type1</dir>' && \
 echo '</fontconfig>' ; \
 } > /usr/share/fontconfig/conf.avail/09-texlive.conf && \
-ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf \
-/etc/fonts/conf.d/09-texlive.conf && \
+ln -sf /usr/share/fontconfig/conf.avail/09-texlive.conf /etc/fonts/conf.d/09-texlive.conf && \
 texhash && \
 fc-cache -sfv && \
 luaotfload-tool -ufv
