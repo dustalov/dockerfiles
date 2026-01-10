@@ -3,10 +3,9 @@ FROM texlive/texlive
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
 RUN \
-mkdir -p "$HOME/.local/share/fonts" && \
-curl -Lo source-serif.zip "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip" && unzip -j source-serif.zip "*.otf" -d "$HOME/.local/share/fonts" && \
-curl -Lo source-sans.zip "https://github.com/adobe-fonts/source-sans/releases/download/3.052R/OTF-source-sans-3.052R.zip" && unzip -j source-sans.zip "*.otf" -d "$HOME/.local/share/fonts" && \
-curl -Lo source-code-pro.zip "https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/OTF-source-code-pro-2.042R-u_1.062R-i.zip" && unzip -j source-code-pro.zip "*.otf" -d "$HOME/.local/share/fonts" && \
+curl -Lo source-serif.zip "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip" && unzip -j source-serif.zip "*.otf" -d "/usr/local/share/fonts" && \
+curl -Lo source-sans.zip "https://github.com/adobe-fonts/source-sans/releases/download/3.052R/OTF-source-sans-3.052R.zip" && unzip -j source-sans.zip "*.otf" -d "/usr/local/share/fonts" && \
+curl -Lo source-code-pro.zip "https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/OTF-source-code-pro-2.042R-u_1.062R-i.zip" && unzip -j source-code-pro.zip "*.otf" -d "/usr/local/share/fonts" && \
 fc-cache --system-only --force --verbose && \
 luaotfload-tool --update --force
 
