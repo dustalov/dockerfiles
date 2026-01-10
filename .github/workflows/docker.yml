@@ -12,6 +12,7 @@ on:
 jobs:
   docker:
     strategy:
+      fail-fast: false
       matrix:
         image: [ cssnano, jekyll, lightningcss, minhtml, netlify, purgecss, texlive ]
     runs-on: ubuntu-latest
