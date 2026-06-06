@@ -4,9 +4,8 @@ LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
 ENV NO_UPDATE_NOTIFIER=1
 
-RUN \
+RUN --mount=type=cache,target=/root/.npm \
 npm install --global --quiet --no-update-notifier --no-fund purgecss && \
-npm cache clean --silent --no-update-notifier --force && \
 chown -R "$(id -un):$(id -gn)" "$(npm config get prefix)"
 
 CMD ["purgecss"]

@@ -2,12 +2,15 @@ FROM texlive/texlive
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
 
-RUN \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 apt-get update && \
-apt-get install -y pandoc && \
+apt-get install -y --no-install-recommends pandoc && \
+rm -rf /var/lib/apt/lists/* && \
 curl -Lo source-serif.zip "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip" && unzip -j source-serif.zip "*.otf" -d "/usr/local/share/fonts" && \
 curl -Lo source-sans.zip "https://github.com/adobe-fonts/source-sans/releases/download/3.052R/OTF-source-sans-3.052R.zip" && unzip -j source-sans.zip "*.otf" -d "/usr/local/share/fonts" && \
 curl -Lo source-code-pro.zip "https://github.com/adobe-fonts/source-code-pro/releases/download/2.042R-u%2F1.062R-i%2F1.026R-vf/OTF-source-code-pro-2.042R-u_1.062R-i.zip" && unzip -j source-code-pro.zip "*.otf" -d "/usr/local/share/fonts" && \
+curl -Lo public-sans.zip "https://github.com/uswds/public-sans/releases/download/v2.001/public-sans-v2.001.zip" && unzip -j public-sans.zip "*.otf" -d "/usr/local/share/fonts" && \
+rm -f *.zip && \
 fc-cache --system-only --force --verbose && \
 luaotfload-tool --update --force
 

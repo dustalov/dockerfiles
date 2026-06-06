@@ -1,8 +1,13 @@
-FROM alpine AS build
+FROM --platform=$BUILDPLATFORM alpine AS build
 
-RUN \
+ARG TARGETARCH
+
+SHELL ["/bin/sh", "-o", "pipefail", "-c"]
+
+RUN --mount=type=cache,target=/var/cache/apk \
 apk add curl jq && \
-curl https://api.github.com/repos/wilsonzlin/minify-html/releases/latest | jq -r "first(.assets[] | select(.name | contains(\"$(uname -m)-unknown-linux-gnu\"))).browser_download_url" | xargs curl -Lo /minhtml && \
+ARCH=$([ "$TARGETARCH" = "amd64" ] && echo "x86_64" || echo "aarch64") && \
+curl https://api.github.com/repos/wilsonzlin/minify-html/releases/latest | jq -r "first(.assets[] | select(.name | contains(\"${ARCH}-unknown-linux-gnu\"))).browser_download_url" | xargs curl -Lo /minhtml && \
 chmod +x /minhtml
 
 FROM ubuntu
