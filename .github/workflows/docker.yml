@@ -21,8 +21,8 @@ jobs:
         image: [ cssnano, jekyll, lightningcss, minhtml, netlify, purgecss, texlive ]
     runs-on: ubuntu-latest
     environment:
-      name: dustalov/${{ matrix.image }}
-      url: https://hub.docker.com/r/dustalov/${{ matrix.image }}
+      name: ${{ github.repository_owner }}/${{ matrix.image }}
+      url: https://hub.docker.com/r/${{ github.repository_owner }}/${{ matrix.image }}
     steps:
     - name: Checkout
       uses: actions/checkout@v6
@@ -54,13 +54,13 @@ jobs:
         provenance: false
         push: ${{ github.event_name != 'pull_request' }}
         tags: |
-          dustalov/${{ matrix.image }}:latest
-          ghcr.io/dustalov/${{ matrix.image }}:latest
+          ${{ github.repository_owner }}/${{ matrix.image }}:latest
+          ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:latest
     - name: Update Docker Hub description
       if: github.event_name != 'pull_request'
       uses: peter-evans/dockerhub-description@v5
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: dustalov/${{ matrix.image }}
+        repository: ${{ github.repository_owner }}/${{ matrix.image }}
         short-description: ${{ matrix.image }}
