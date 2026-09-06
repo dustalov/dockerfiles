@@ -1,6 +1,8 @@
 FROM texlive/texlive
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/dustalov/dockerfiles"
+LABEL org.opencontainers.image.licenses="Unlicense"
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 apt-get update && \

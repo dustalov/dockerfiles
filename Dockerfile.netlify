@@ -1,6 +1,8 @@
 FROM node:lts-alpine
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/dustalov/dockerfiles"
+LABEL org.opencontainers.image.licenses="Unlicense"
 
 ENV NO_UPDATE_NOTIFIER=1
 

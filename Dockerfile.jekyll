@@ -1,6 +1,8 @@
 FROM alpine
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/dustalov/dockerfiles"
+LABEL org.opencontainers.image.licenses="Unlicense"
 
 ENV BUNDLE_DISABLE_VERSION_CHECK=1 BUNDLE_VERSION=system JEKYLL_ENV=production JEKYLL_NO_BUNDLER_REQUIRE=1 RUBYGEMS_PREVENT_UPDATE_SUGGESTION=1 RUBYOPT="--disable-did_you_mean"
 

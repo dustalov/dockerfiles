@@ -5,14 +5,18 @@ ARG TARGETARCH
 SHELL ["/bin/sh", "-o", "pipefail", "-c"]
 
 RUN --mount=type=cache,target=/var/cache/apk \
+    --mount=type=secret,id=github_token \
 apk add curl jq && \
 ARCH=$([ "$TARGETARCH" = "amd64" ] && echo "x86_64" || echo "aarch64") && \
-curl https://api.github.com/repos/wilsonzlin/minify-html/releases/latest | jq -r "first(.assets[] | select(.name | contains(\"${ARCH}-unknown-linux-gnu\"))).browser_download_url" | xargs curl -Lo /minhtml && \
+if [ -s /run/secrets/github_token ]; then AUTH_HEADER="Authorization: Bearer $(cat /run/secrets/github_token)"; else AUTH_HEADER="Accept: application/vnd.github+json"; fi && \
+curl -sH "$AUTH_HEADER" https://api.github.com/repos/wilsonzlin/minify-html/releases/latest | jq -r "first(.assets[] | select(.name | contains(\"${ARCH}-unknown-linux-gnu\"))).browser_download_url" | xargs curl -Lo /minhtml && \
 chmod +x /minhtml
 
-FROM ubuntu
+FROM debian:stable-slim
 
 LABEL org.opencontainers.image.authors="dmitry.ustalov@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/dustalov/dockerfiles"
+LABEL org.opencontainers.image.licenses="Unlicense"
 
 COPY --from=build /minhtml /usr/bin/
 
