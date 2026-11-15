@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.licenses="Unlicense"
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 apt-get update && \
-apt-get install -y --no-install-recommends pandoc && \
+apt-get install -y --no-install-recommends pandoc qpdf && \
 rm -rf /var/lib/apt/lists/* && \
 curl -Lo source-serif.zip "https://github.com/adobe-fonts/source-serif/releases/download/4.005R/source-serif-4.005_Desktop.zip" && unzip -j source-serif.zip "*.otf" -d "/usr/local/share/fonts" && \
 curl -Lo source-sans.zip "https://github.com/adobe-fonts/source-sans/releases/download/3.052R/OTF-source-sans-3.052R.zip" && unzip -j source-sans.zip "*.otf" -d "/usr/local/share/fonts" && \
